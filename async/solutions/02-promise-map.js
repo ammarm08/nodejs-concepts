@@ -1,14 +1,27 @@
 'use strict';
 
 const asyncMap = list => {
-  return new Promise((resolve, reject) => {
-    return Promise.all(list)
-    .then(res => {
-      resolve(res);
-    }).catch(err => {
-      reject(err);
-    })
-  });
+  const src = list.slice();
+  const res = [];
+
+  const step = () => {
+    return new Promise((resolve, reject) => {
+      if (!src.length) {
+        resolve(res);
+      } else {
+        const promise = src.shift();
+        promise
+        .then(data => {
+          res.push(data);
+          resolve(step());
+        }).catch(err => {
+          reject(err);
+        });
+      }
+    });
+  }
+  
+  return step();
 }
 
 // SAMPLE USAGE

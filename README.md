@@ -1,5 +1,5 @@
 # nodejs-concepts
-Some teaching / self-learning exercise for core ideas in Javascript
+Some teaching / self-learning exercises for core ideas in Javascript
 
 # The Concepts (Works in Progress)
 
